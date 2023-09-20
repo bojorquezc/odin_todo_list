@@ -17,16 +17,16 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
         }
     }
 
-    function updateToDo() {
-    // function updateToDo(updatedContent, property) {
+    function updateToDo(updatedContent, property) {
         if (projectExists === true) {
             console.log('Project exists')
-            // for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
-            //     if (todoProjects[`${project}`][index].taskName === taskName) {
-            //         console.log(`TEST!`)
-            //         // todoProjects[`${project}`][index].property = updatedContent;
-            //     }
-            // }
+            for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
+                if (todoProjects[`${project}`][index].taskName === taskName) {
+                    console.log(`Task match found: ${taskName}`);
+                    todoProjects[`${project}`][index][`${property}`] = updatedContent;
+                    console.log('Task updated');
+                }
+            }
         }
     }
 
