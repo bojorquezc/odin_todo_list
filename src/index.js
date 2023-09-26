@@ -1,4 +1,4 @@
 import './style.css';
-import { todoItem, sayHello } from './todo_manager.js';
+import { displayTodo } from './todo_display';
 
-sayHello();
+displayTodo();

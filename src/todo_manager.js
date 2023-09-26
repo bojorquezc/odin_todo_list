@@ -4,10 +4,6 @@ const todoProjects = {
     default: []
 };
 
-function sayHello() {
-    console.log('Hello!');
-}
-
 const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
     
     function createToDo() {
@@ -54,15 +50,14 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
 }
 
 
-// const buyFood = todoItem('Buy Food', 'Go to the market and buy food', 'August 25 2023', 'medium', 'home');
-// buyFood.createToDo()
+//sample todo tasks
+const buyFood = todoItem('Buy Food', 'Go to the market and buy food', 'August 25 2023', 'medium', 'home');
+buyFood.createToDo()
 
-// const doLaundry = todoItem('Do Laundry', 'Wash my clothes', 'August 27 2023', 'medium', 'gym');
-// // createToDo(doLaundry);
-// doLaundry.createToDo();
+const doLaundry = todoItem('Do Laundry', 'Wash my clothes', 'August 27 2023', 'medium', 'gym');
+doLaundry.createToDo();
 
-// const cookFood = todoItem('Cook Food', 'Cook tasty food', 'August 29 2023', 'medium', 'home');
-// // createToDo(cookFood);
-// cookFood.createToDo();
+const cookFood = todoItem('Cook Food', 'Cook tasty food', 'August 29 2023', 'medium', 'home');
+cookFood.createToDo();
 
-export { todoItem, sayHello };
+export { todoItem, todoProjects };
