@@ -9,6 +9,7 @@ function displayTodo() {
 
                 const mainContent = document.querySelector('.content');
                 const todoContainer = document.createElement('div');
+                todoContainer.classList.add('todo_container')
                 mainContent.appendChild(todoContainer);
 
                 const todoTitle = document.createElement('p');
