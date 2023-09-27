@@ -37,4 +37,10 @@ function displayTodo() {
     }
 }
 
-export { displayTodo };
+function refreshDisplay() {
+    const mainContent = document.querySelector('.content');
+    mainContent.replaceChildren();
+
+}
+
+export { displayTodo, refreshDisplay };

@@ -1,8 +1,9 @@
 //todo_manager.js takes care of the basic CRUD operations of the todo list project
-
 const todoProjects = {
     default: []
 };
+
+
 
 const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
     
