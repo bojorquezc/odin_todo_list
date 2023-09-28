@@ -52,13 +52,13 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
 
 
 //sample todo tasks
-const buyFood = todoItem('Buy Food', 'Go to the market and buy food', 'August 25 2023', 'medium', 'home');
+const buyFood = todoItem('Buy Food for Meal Prep', 'Go to the market and buy food, make sure the food is fresh', 'August 25 2023', 'Medium', 'Home');
 buyFood.createToDo()
 
-const doLaundry = todoItem('Do Laundry', 'Wash my clothes', 'August 27 2023', 'medium', 'gym');
+const doLaundry = todoItem('Do Laundry and Dry Clothes', 'Wash my clothes and set it to dry under the shade', 'August 27 2023', 'Medium', 'Home');
 doLaundry.createToDo();
 
-const cookFood = todoItem('Cook Food', 'Cook tasty food', 'August 29 2023', 'medium', 'home');
-cookFood.createToDo();
+const studyCode = todoItem('Study Coding This Afternoon', 'Spend 30 minutes learning about JS modules, add notes to black notebook', 'August 29 2023', 'Medium', 'Study');
+studyCode.createToDo();
 
 export { todoItem, todoProjects };

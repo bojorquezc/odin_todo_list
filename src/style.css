@@ -27,9 +27,33 @@ footer, header, hgroup, menu, nav, section {
 
 }
 
+body {
+    background: #212020;
+    color: #ffffff;
+    font-family: monospace;
+}
+
 h1 {
-    font-size: 3rem;
-    color: #8a2be2;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e3ff6f;
+}
+
+header {
+    padding: 2rem;
+}
+
+.main-actions {
+    padding:2rem;
+}
+
+.add_task_button {
+    padding: 10px;
+    font-family: monospace;
+    color: #ff5a00;
+    background-color: #ffffff00;
+    border-style: solid;
+    border-color: #ff5a00;
 }
 
 .content {
@@ -38,4 +62,11 @@ h1 {
 
 .todo_container {
     padding: 2rem;
+    line-height: 1.8rem;
+    font-size: 16px;
+}
+
+.card-title {
+    color: #00e500;
+    font-weight: bolder;
 }

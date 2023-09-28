@@ -30,19 +30,25 @@ function pushToDo() {
 
     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project);
     newTask.createToDo();
+    generalReset();
+
     console.log(newTask.taskName);
     console.log(todoProjects);
+}
+
+function generalReset() {
+    addTaskForm.reset();
+    hideModal();
+    refreshDisplay();
+    displayTodo();
 }
 
 addNewTaskBtn.addEventListener('click', showModal);
 closeModalBtn.addEventListener('click', hideModal);
 submitModalBtn.addEventListener('click', pushToDo);
-submitModalBtn.addEventListener('submit', (e) => {
-    e.preventDefault();
-    refreshDisplay();
-    pushToDo();
-    displayTodo();
-})
+// submitModalBtn.addEventListener('submit', (e) => {
+//     e.preventDefault();
+// })
 
 export { showModal, hideModal, pushToDo }
 
