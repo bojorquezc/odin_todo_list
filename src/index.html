@@ -9,8 +9,8 @@
 </head>
 <body>
     <header>
-        <h1>To Do Project</h1>
-        <p>to do project created for The Odin Project curriculum</p>
+        <h1>terminal.todo</h1>
+        <p>todo list project with vanilla javascript</p>
     </header>
     <div class="main-actions">
         <button class="add_task_button">
@@ -29,7 +29,8 @@
                 </div>
                 <div class="form-field">
                     <label for="task_description">Task Description:</label>
-                    <input type="text" id="taskDesc" placeholder="Task Description">
+                    <textarea name="taskDesc" id="taskDesc" cols="30" rows="4" placeholder="Task Description"></textarea>
+                    <!-- <input type="text" id="taskDesc" placeholder="Task Description"> -->
                 </div>
                 <div class="form-field">
                     <label for="due_date">Due Date:</label>
@@ -37,7 +38,11 @@
                 </div>
                 <div class="form-field">
                     <label for="priority">Priority:</label>
-                    <input type="text" id="priority" placeholder="Priority">
+                    <select name="priority" id="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="project">Project:</label>

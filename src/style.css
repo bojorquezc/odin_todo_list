@@ -43,6 +43,46 @@ header {
     padding: 2rem;
 }
 
+.modal {
+    background: #212020;
+    color: #ffffff;
+    padding: 30px;
+    font-size: 16px;
+}
+
+.close_modal {
+    padding: 5px 7px;
+    font-family: monospace;
+    color: #ff5a00;
+    background-color: #ffffff00;
+    border-style: solid;
+    border-color: #ff5a00;
+}
+
+.form-title {
+    color: #e3ff6f;
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 1rem;
+}
+
+.form-close-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-field {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.form-field input, select, textarea {
+    font-family: monospace;
+    width: 100%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+
 .main-actions {
     padding:2rem;
 }
@@ -56,14 +96,28 @@ header {
     border-color: #ff5a00;
 }
 
+.submit_btn {
+    margin-top: 2rem;
+    padding: 10px;
+    font-family: monospace;
+    color: #00e500;
+    background-color: #ffffff00;
+    border-style: solid;
+    border-color: #00e500;
+    width: 100%;
+}
+
 .content {
     display: flex;
+    gap: 2rem;
+    padding: 2rem;
 }
 
 .todo_container {
     padding: 2rem;
     line-height: 1.8rem;
     font-size: 16px;
+    background-color: #1b2a25;
 }
 
 .card-title {
