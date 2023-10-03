@@ -1,5 +1,5 @@
 import { todoItem, todoProjects } from "./todo_manager";
-import { displayTodo, refreshDisplay } from "./todo_display";
+import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_display";
 
 const addNewTaskBtn = document.querySelector('.add_task_button');
 const closeModalBtn = document.querySelector('.close_modal')
@@ -41,6 +41,7 @@ function generalReset() {
     hideModal();
     refreshDisplay();
     displayTodo();
+    displayProjectButtons();
 }
 
 addNewTaskBtn.addEventListener('click', showModal);

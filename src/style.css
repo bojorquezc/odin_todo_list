@@ -83,8 +83,14 @@ header {
     box-sizing: border-box;
 }
 
-.main-actions {
+.main_actions {
     padding:2rem;
+}
+
+.project_buttons_section {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 2rem;
 }
 
 .add_task_button {
@@ -94,6 +100,16 @@ header {
     background-color: #ffffff00;
     border-style: solid;
     border-color: #ff5a00;
+}
+
+.project_button {
+    padding: 10px;
+    font-family: monospace;
+    color: #00b6df;
+    background-color: #ffffff00;
+    border-style: solid;
+    color: #00b6df;
+    border-color: #00b6df;
 }
 
 .submit_btn {
