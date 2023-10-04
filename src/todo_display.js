@@ -67,20 +67,12 @@ function displayProjectButtons() {
     const projectButtonsSection = document.querySelector('.project_buttons_section');
 
     for (const project in todoProjects) {
-        if (Array.isArray(todoProjects[project])) {
-            const array = todoProjects[project];
-            for (let i = 0; i < array.length; i++) {
-                console.log(`Project is: ${project}`);
-
-                const projectButton = document.createElement('button');
-                projectButton.classList.add('project_button');
-                projectButton.classList.add(`project_${project.toLowerCase()}`);
-                projectButton.textContent = project;
-                projectButton.addEventListener('click', filterProject);
-                projectButtonsSection.appendChild(projectButton);
-
-            }
-        }
+        const projectButton = document.createElement('button');
+        projectButton.classList.add('project_button');
+        projectButton.classList.add(`project_${project.toLowerCase()}`);
+        projectButton.textContent = project;
+        projectButton.addEventListener('click', filterProject);
+        projectButtonsSection.appendChild(projectButton);
     }
 }
 
