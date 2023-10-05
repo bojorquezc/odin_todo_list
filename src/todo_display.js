@@ -57,9 +57,6 @@ function displayTodo() {
 }
 
 // Display the buttons for navigation between projects
-const homeProjectFilter = document.getElementById('home_project_filter');
-homeProjectFilter.addEventListener('click', displayProjectButtons);
-
 
 function displayProjectButtons() {
     const projectButtonsSection = document.querySelector('.project_buttons_section');
@@ -67,19 +64,42 @@ function displayProjectButtons() {
     for (const projectArray in todoProjects) {
         const projectButton = document.createElement('button');
         projectButton.classList.add('project_button');
-        projectButton.setAttribute('id', projectArray.toLowerCase());
+        projectButton.setAttribute('id', projectArray);
         projectButton.textContent = projectArray;
-        projectButton.addEventListener('click', filterProject);
         projectButtonsSection.appendChild(projectButton);
     }
+    projectButtonAddListener();
 }
 
-function filterProject(projectArrayID) {
-    for (const projectArray in todoProjects) {
-        if (projectArray === projectArrayID ) {
-            console.log(`The project array is ${projectArray}`);
-        }
+function projectButtonAddListener() {
+    const projectButtons = document.querySelectorAll('.project_button')
+    projectButtons.forEach((button) => {
+        button.addEventListener('click', projectFilter)
+    });
+}
 
+function projectFilter() {
+    refreshDisplay();
+    displayProjectButtons();
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === this.id) {
+
+                const mainContent = document.querySelector('.content');
+                const todoContainer = document.createElement('div');
+                todoContainer.classList.add('todo_container')
+                mainContent.appendChild(todoContainer);
+
+                const todoTaskNameTitle = document.createElement('p');
+                todoTaskNameTitle.classList.add('card-title');
+                todoTaskNameTitle.textContent = 'Title:';
+                todoContainer.appendChild(todoTaskNameTitle);
+                const todoTaskName = document.createElement('p');
+                todoTaskName.textContent = array[i].taskName;
+                todoContainer.appendChild(todoTaskName);
+            }
+        }
     }
 }
 
