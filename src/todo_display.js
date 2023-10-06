@@ -12,6 +12,15 @@ function displayTodo() {
             todoContainer.classList.add('todo_container')
             mainContent.appendChild(todoContainer);
 
+            const taskButtonDiv =  document.createElement('div');
+            taskButtonDiv.classList.add('task_buttons');
+            todoContainer.appendChild(taskButtonDiv);
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'edit';
+            editButton.setAttribute('id', 'edit_button');
+            taskButtonDiv.appendChild(editButton);
+
             const todoTaskNameTitle = document.createElement('p');
             todoTaskNameTitle.classList.add('card-title');
             todoTaskNameTitle.textContent = 'Title:';

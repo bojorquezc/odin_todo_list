@@ -136,6 +136,19 @@ header {
     background-color: #1b2a25;
 }
 
+.task_buttons {
+    padding: 1rem 0 2rem 0;
+}
+
+.task_buttons button {
+    padding: 10px;
+    font-family: monospace;
+    background-color: #ffffff00;
+    border-style: solid;
+    color: #f4c500;
+    border-color: #f4c500;
+}
+
 .card-title {
     color: #00e500;
     font-weight: bolder;
