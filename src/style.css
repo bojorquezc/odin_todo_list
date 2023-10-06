@@ -43,6 +43,10 @@ header {
     padding: 2rem;
 }
 
+button {
+    cursor: pointer;
+}
+
 .modal {
     background: #212020;
     color: #ffffff;

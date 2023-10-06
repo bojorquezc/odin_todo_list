@@ -1,5 +1,6 @@
 // import { todoItem } from './todo_manager.js';
 import { todoProjects } from "./todo_manager";
+import { editButtonAddListener } from "./todo_modal";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
@@ -18,8 +19,11 @@ function displayTodo() {
 
             const editButton = document.createElement('button');
             editButton.textContent = 'edit';
-            editButton.setAttribute('id', 'edit_button');
+            editButton.classList.add('edit_button');
+            editButton.dataset.project = projectArray;
+            editButton.dataset.taskName = array[i].taskName;
             taskButtonDiv.appendChild(editButton);
+            editButtonAddListener();
 
             const todoTaskNameTitle = document.createElement('p');
             todoTaskNameTitle.classList.add('card-title');
