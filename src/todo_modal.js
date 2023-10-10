@@ -1,10 +1,12 @@
-import { todoItem, todoProjects } from "./todo_manager";
+import { v4 as uuidv4 } from 'uuid';
+import { todoItem, todoProjects} from "./todo_manager";
 import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_display";
 
 const formTitle = document.querySelector('.form-title');
 const addNewTaskBtn = document.querySelector('.add_task_button');
 const closeModalBtn = document.querySelector('.close_modal')
 const submitModalBtn = document.querySelector('.submit_btn');
+const editModalBtn = document.querySelector('.edit_btn');
 const taskModal = document.querySelector('.modal');
 
 const taskNameField = document.querySelector('#taskName');
@@ -20,6 +22,11 @@ function showModal() {
 
 function hideModal() {
     taskModal.style.display = 'none';
+    resetForm();
+}
+
+function resetForm() {
+    addTaskForm.reset();
 }
 
 function pushToDo() {
@@ -28,7 +35,7 @@ function pushToDo() {
     const dueDate = taskDueDate.value;
     const priority = taskPriority.value;
     const project = taskProject.value;
-    const taskID = Date.now().toString();
+    const taskID = uuidv4();
 
     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID);
     newTask.createToDo();
@@ -48,14 +55,16 @@ function editButtonAddListener() {
 function editFilter() {
     for (const projectArray in todoProjects) {
         const dataSetProject = this.dataset.project;
-        const dataSetTaskName = this.dataset.taskName;
+        const dataSetTaskId = this.dataset.taskId;
         const array = todoProjects[projectArray];
 
         for (let i = 0; i < array.length; i++) {
-            if (projectArray === dataSetProject && array[i].taskName === dataSetTaskName) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
 
                 formTitle.textContent = 'Edit Task';
                 submitModalBtn.textContent = 'Edit Task';
+                submitModalBtn.dataset.project = dataSetProject;
+                submitModalBtn.dataset.taskId = dataSetTaskId;
 
                 taskNameField.value = array[i].taskName;
                 taskDescField.value = array[i].taskDescription;
@@ -70,7 +79,7 @@ function editFilter() {
 }
 
 function generalReset() {
-    addTaskForm.reset();
+    resetForm();
     hideModal();
     refreshDisplay();
     displayTodo();
@@ -79,10 +88,31 @@ function generalReset() {
 
 addNewTaskBtn.addEventListener('click', showModal);
 closeModalBtn.addEventListener('click', hideModal);
-submitModalBtn.addEventListener('click', pushToDo);
-// submitModalBtn.addEventListener('submit', (e) => {
-//     e.preventDefault();
-// })
+// submitModalBtn.addEventListener('click', pushToDo);
+addTaskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (submitModalBtn.textContent === 'Submit New Task') {
+        pushToDo();
+    } else {
+        const dataSetProject = submitModalBtn.dataset.project;
+        const dataSetTaskId = submitModalBtn.dataset.taskId;
+        for (const projectArray in todoProjects) {
+            const array = todoProjects[projectArray];
+
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].project === dataSetProject && array[i].taskID === submitModalBtn.dataset.taskId) {
+                    array[i].taskName = taskNameField.value;
+                    array[i].taskDescription = taskDescField.value;
+                    array[i].dueDate = taskDueDate.value;
+                    array[i].priority = taskPriority.value;
+                    array[i].project = taskProject.value;
+                    console.log(array[i]);
+                    generalReset();
+                }
+            }
+        }
+    }
+})
 
 export { showModal, hideModal, pushToDo, editButtonAddListener }
 

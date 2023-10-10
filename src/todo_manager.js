@@ -38,6 +38,17 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID)
         }
     }
 
+    function editToDo() {
+        for (const projectArray in todoProjects) {
+            const array = todoProjects[projectArray];
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].taskID === this.dataset.taskId) {
+                    console.log('Yeeeehaw!');
+                }
+            }
+        }
+    }
+
     function deleteToDo() {
         const projectExists = project in todoProjects;
         if (projectExists === true) {
@@ -49,7 +60,7 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID)
         }
     }
 
-    return { taskName, taskDescription, dueDate, priority, project, taskID, createToDo, updateToDo, deleteToDo }
+    return { taskName, taskDescription, dueDate, priority, project, taskID, createToDo, updateToDo, editToDo, deleteToDo }
 }
 
 //sample todo tasks

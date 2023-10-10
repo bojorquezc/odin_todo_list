@@ -127,6 +127,18 @@ button {
     width: 100%;
 }
 
+.edit_btn {
+    margin-top: 2rem;
+    padding: 10px;
+    font-family: monospace;
+    color: #00e500;
+    background-color: #ffffff00;
+    border-style: solid;
+    border-color: #00e500;
+    width: 100%;
+    display: none;
+}
+
 .content {
     display: flex;
     gap: 2rem;

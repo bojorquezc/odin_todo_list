@@ -1,4 +1,5 @@
 // import { todoItem } from './todo_manager.js';
+import { v4 as uuidv4 } from 'uuid';
 import { todoProjects } from "./todo_manager";
 import { editButtonAddListener } from "./todo_modal";
 
@@ -21,7 +22,7 @@ function displayTodo() {
             editButton.textContent = 'edit';
             editButton.classList.add('edit_button');
             editButton.dataset.project = projectArray;
-            editButton.dataset.taskName = array[i].taskName;
+            editButton.dataset.taskId = array[i].taskID;
             taskButtonDiv.appendChild(editButton);
             editButtonAddListener();
 
