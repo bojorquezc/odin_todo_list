@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { todoItem, todoProjects} from "./todo_manager";
 import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_display";
 
+
+
 const formTitle = document.querySelector('.form-title');
 const addNewTaskBtn = document.querySelector('.add_task_button');
 const closeModalBtn = document.querySelector('.close_modal')
@@ -15,6 +17,8 @@ const taskDueDate = document.querySelector('#dueDate');
 const taskPriority = document.querySelector('#priority');
 const taskProject = document.querySelector('#project');
 const addTaskForm = document.querySelector('.add_task_form');
+
+
 
 function showModal() {
     taskModal.style.display = 'block';
@@ -88,7 +92,7 @@ function editToDo() {
         const array = todoProjects[projectArray];
 
         for (let i = 0; i < array.length; i++) {
-            if (array[i].project === dataSetProject && array[i].taskID === submitModalBtn.dataset.taskId) {
+            if (array[i].project === dataSetProject && array[i].taskID === dataSetTaskId) {
                 array[i].taskName = taskNameField.value;
                 array[i].taskDescription = taskDescField.value;
                 array[i].dueDate = taskDueDate.value;

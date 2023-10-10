@@ -26,6 +26,14 @@ function displayTodo() {
             taskButtonDiv.appendChild(editButton);
             editButtonAddListener();
 
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'delete';
+            deleteButton.classList.add('delete_button');
+            deleteButton.dataset.project = projectArray;
+            deleteButton.dataset.taskId = array[i].taskID;
+            taskButtonDiv.appendChild(deleteButton);
+
+
             const todoTaskNameTitle = document.createElement('p');
             todoTaskNameTitle.classList.add('card-title');
             todoTaskNameTitle.textContent = 'Title:';

@@ -153,6 +153,8 @@ button {
 }
 
 .task_buttons {
+    display: flex;
+    gap: 1rem;
     padding: 1rem 0 2rem 0;
 }
 
@@ -163,6 +165,11 @@ button {
     border-style: solid;
     color: #f4c500;
     border-color: #f4c500;
+}
+
+.task_buttons > .delete_button {
+    color: #b64545;
+    border-color: #b64545;
 }
 
 .card-title {
