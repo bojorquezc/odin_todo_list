@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 //todo_manager.js takes care of the basic CRUD operations of the todo list project
 const todoProjects = {
     Default: []
@@ -5,7 +7,7 @@ const todoProjects = {
 
 
 
-const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
+const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID) => {
     
     function createToDo() {
         const projectExists = project in todoProjects;
@@ -47,18 +49,17 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project) => {
         }
     }
 
-    return { taskName, taskDescription, dueDate, priority, project, createToDo, updateToDo, deleteToDo }
+    return { taskName, taskDescription, dueDate, priority, project, taskID, createToDo, updateToDo, deleteToDo }
 }
 
-
 //sample todo tasks
-const buyFood = todoItem('Buy Food for Meal Prep', 'Go to the market and buy food, make sure the food is fresh', '2023-08-05T13:15', 'Medium', 'Home');
+const buyFood = todoItem('Buy Food for Meal Prep', 'Go to the market and buy food, make sure the food is fresh', '2023-08-05T13:15', 'Medium', 'Home', uuidv4());
 buyFood.createToDo()
 
-const doLaundry = todoItem('Do Laundry and Dry Clothes', 'Wash my clothes and set it to dry under the shade', '2023-10-15T12:00', 'Medium', 'Home');
+const doLaundry = todoItem('Do Laundry and Dry Clothes', 'Wash my clothes and set it to dry under the shade', '2023-10-15T12:00', 'Medium', 'Home', uuidv4());
 doLaundry.createToDo();
 
-const studyCode = todoItem('Study Coding This Afternoon', 'Spend 30 minutes learning about JS modules, add notes to black notebook', '2023-11-11T16:30', 'Medium', 'Study');
+const studyCode = todoItem('Study Coding This Afternoon', 'Spend 30 minutes learning about JS modules, add notes to black notebook', '2023-11-11T16:30', 'Medium', 'Study', uuidv4());
 studyCode.createToDo();
 
 export { todoItem, todoProjects };

@@ -28,8 +28,9 @@ function pushToDo() {
     const dueDate = taskDueDate.value;
     const priority = taskPriority.value;
     const project = taskProject.value;
+    const taskID = Date.now().toString();
 
-    const newTask = todoItem(taskName, taskDescription, dueDate, priority, project);
+    const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID);
     newTask.createToDo();
     generalReset();
 

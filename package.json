@@ -18,5 +18,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "main": "webpack.config.js",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
 }
