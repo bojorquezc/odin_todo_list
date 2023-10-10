@@ -27,6 +27,9 @@ function hideModal() {
 
 function resetForm() {
     addTaskForm.reset();
+    formTitle.textContent = 'Add a new task';
+    submitModalBtn.textContent = 'Submit New Task';
+
 }
 
 function pushToDo() {
@@ -78,6 +81,26 @@ function editFilter() {
     }
 }
 
+function editToDo() {
+    const dataSetProject = submitModalBtn.dataset.project;
+    const dataSetTaskId = submitModalBtn.dataset.taskId;
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].project === dataSetProject && array[i].taskID === submitModalBtn.dataset.taskId) {
+                array[i].taskName = taskNameField.value;
+                array[i].taskDescription = taskDescField.value;
+                array[i].dueDate = taskDueDate.value;
+                array[i].priority = taskPriority.value;
+                array[i].project = taskProject.value;
+                console.log(array[i]);
+                generalReset();
+            }
+        }
+    }
+}
+
 function generalReset() {
     resetForm();
     hideModal();
@@ -94,23 +117,7 @@ addTaskForm.addEventListener('submit', (e) => {
     if (submitModalBtn.textContent === 'Submit New Task') {
         pushToDo();
     } else {
-        const dataSetProject = submitModalBtn.dataset.project;
-        const dataSetTaskId = submitModalBtn.dataset.taskId;
-        for (const projectArray in todoProjects) {
-            const array = todoProjects[projectArray];
-
-            for (let i = 0; i < array.length; i++) {
-                if (array[i].project === dataSetProject && array[i].taskID === submitModalBtn.dataset.taskId) {
-                    array[i].taskName = taskNameField.value;
-                    array[i].taskDescription = taskDescField.value;
-                    array[i].dueDate = taskDueDate.value;
-                    array[i].priority = taskPriority.value;
-                    array[i].project = taskProject.value;
-                    console.log(array[i]);
-                    generalReset();
-                }
-            }
-        }
+        editToDo();
     }
 })
 
