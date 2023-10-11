@@ -88,11 +88,15 @@ function editToDo() {
 }
 
 function deleteToDo() {
-    const projectExists = project in todoProjects;
-    if (projectExists === true) {
-        for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
-            if (todoProjects[`${project}`][index].taskName === taskName) {
-                todoProjects[`${project}`].splice(index, 1);
+    for (const projectArray in todoProjects) {
+        const dataSetProject = this.dataset.project;
+        const dataSetTaskId = this.dataset.taskId;
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
+                array.splice(i, 1);
+                generalReset();
             }
         }
     }

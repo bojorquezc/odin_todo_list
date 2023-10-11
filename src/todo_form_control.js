@@ -1,5 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
-import { todoItem, todoProjects, pushToDo, editToDo, editFilter } from "./todo_manager";
+import { pushToDo, editToDo } from "./todo_manager";
 import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_display";
 
 const form = {
@@ -34,23 +33,6 @@ function resetForm() {
     dialog.submitBtn.textContent = 'Submit New Task';
 
 }
-
-// function pushToDo() {
-//     const taskName = form.taskNameField.value;
-//     const taskDescription = form.taskDescField.value;
-//     const dueDate = form.taskDueDate.value;
-//     const priority = form.taskPriority.value;
-//     const project = form.taskProject.value;
-//     const taskID = uuidv4();
-//     const completed = false;
-
-//     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
-//     newTask.createToDo();
-//     generalReset();
-
-//     console.log(newTask.taskName);
-//     console.log(todoProjects);
-// }
 
 function generalReset() {
     resetForm();
