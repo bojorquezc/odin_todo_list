@@ -1,11 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
+import { form, dialog, showDialog, generalReset } from './todo_form_control';
 
 //todo_manager.js takes care of the basic CRUD operations of the todo list project
 const todoProjects = {
     Default: []
 };
-
-
 
 const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
     
@@ -22,34 +21,95 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID,
         }
     }
 
-    function updateToDo(updatedContent, property) {
-        const projectExists = project in todoProjects;
-        if (projectExists === true) {
-            console.log('Project exists');
-            for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
-                if (todoProjects[`${project}`][index].taskName === taskName) {
-                    console.log(`Task match found: ${taskName}`);
-                    todoProjects[`${project}`][index][`${property}`] = updatedContent;
-                    console.log('Task updated');
-                }
+    return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo }
+}
+
+function pushToDo() {
+    const taskName = form.taskNameField.value;
+    const taskDescription = form.taskDescField.value;
+    const dueDate = form.taskDueDate.value;
+    const priority = form.taskPriority.value;
+    const project = form.taskProject.value;
+    const taskID = uuidv4();
+    const completed = false;
+
+    const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
+    newTask.createToDo();
+    generalReset();
+
+    console.log(newTask.taskName);
+    console.log(todoProjects);
+}
+
+function editFilter() {
+    for (const projectArray in todoProjects) {
+        const dataSetProject = this.dataset.project;
+        const dataSetTaskId = this.dataset.taskId;
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
+
+                dialog.title.textContent = 'Edit Task';
+                dialog.submitBtn.textContent = 'Edit Task';
+                dialog.submitBtn.dataset.project = dataSetProject;
+                dialog.submitBtn.dataset.taskId = dataSetTaskId;
+
+                form.taskNameField.value = array[i].taskName;
+                form.taskDescField.value = array[i].taskDescription;
+                form.taskDueDate.value = array[i].dueDate;
+                form.taskPriority.value = array[i].priority;
+                form.taskProject.value = array[i].project;
+
+                showDialog();
             }
-        } else {
-            console.log(`Project does not exist in todoProjects Object.\n'this' Object project: ${this.project}\n`);
         }
     }
+}
 
-    function deleteToDo() {
-        const projectExists = project in todoProjects;
-        if (projectExists === true) {
-            for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
-                if (todoProjects[`${project}`][index].taskName === taskName) {
-                    todoProjects[`${project}`].splice(index, 1);
-                }
+function editToDo() {
+    const dataSetProject = dialog.submitBtn.dataset.project;
+    const dataSetTaskId = dialog.submitBtn.dataset.taskId;
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].project === dataSetProject && array[i].taskID === dataSetTaskId) {
+                array[i].taskName = form.taskNameField.value;
+                array[i].taskDescription = form.taskDescField.value;
+                array[i].dueDate = form.taskDueDate.value;
+                array[i].priority = form.taskPriority.value;
+                array[i].project = form.taskProject.value;
+                console.log(array[i]);
+                generalReset();
             }
         }
     }
+}
 
-    return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo, updateToDo, deleteToDo }
+function deleteToDo() {
+    const projectExists = project in todoProjects;
+    if (projectExists === true) {
+        for (let index = 0; index < todoProjects[`${project}`].length; index+=1) {
+            if (todoProjects[`${project}`][index].taskName === taskName) {
+                todoProjects[`${project}`].splice(index, 1);
+            }
+        }
+    }
+}
+
+function editButtonAddListener() {
+    const editButtons = document.querySelectorAll('.edit_button')
+    editButtons.forEach((button) => {
+        button.addEventListener('click', editFilter)
+    });
+}
+
+function deleteButtonAddListener() {
+    const deleteButtons = document.querySelectorAll('.delete_button')
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', deleteToDo)
+    });
 }
 
 //sample todo tasks
@@ -62,4 +122,4 @@ doLaundry.createToDo();
 const studyCode = todoItem('Study Coding This Afternoon', 'Spend 30 minutes learning about JS modules, add notes to black notebook', '2023-11-11T16:30', 'Medium', 'Study', uuidv4(), false);
 studyCode.createToDo();
 
-export { todoItem, todoProjects };
+export { todoItem, pushToDo, deleteToDo, editButtonAddListener, editToDo, editFilter, deleteButtonAddListener, todoProjects };
