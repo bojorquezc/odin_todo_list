@@ -47,14 +47,14 @@ button {
     cursor: pointer;
 }
 
-.modal {
+.dialog_form {
     background: #212020;
     color: #ffffff;
     padding: 30px;
     font-size: 16px;
 }
 
-.close_modal {
+.close_dialog {
     padding: 5px 7px;
     font-family: monospace;
     color: #ff5a00;

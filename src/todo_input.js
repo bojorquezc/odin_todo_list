@@ -6,10 +6,10 @@ import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_displ
 
 const formTitle = document.querySelector('.form-title');
 const addNewTaskBtn = document.querySelector('.add_task_button');
-const closeModalBtn = document.querySelector('.close_modal')
-const submitModalBtn = document.querySelector('.submit_btn');
-const editModalBtn = document.querySelector('.edit_btn');
-const taskModal = document.querySelector('.modal');
+const closeDialogBtn = document.querySelector('.close_dialog')
+const submitDialogBtn = document.querySelector('.submit_btn');
+const editDialogBtn = document.querySelector('.edit_btn');
+const taskDialog = document.querySelector('.dialog_form');
 
 const taskNameField = document.querySelector('#taskName');
 const taskDescField = document.querySelector('#taskDesc');
@@ -20,19 +20,19 @@ const addTaskForm = document.querySelector('.add_task_form');
 
 
 
-function showModal() {
-    taskModal.style.display = 'block';
+function showDialog() {
+    taskDialog.style.display = 'block';
 }
 
-function hideModal() {
-    taskModal.style.display = 'none';
+function hideDialog() {
+    taskDialog.style.display = 'none';
     resetForm();
 }
 
 function resetForm() {
     addTaskForm.reset();
     formTitle.textContent = 'Add a new task';
-    submitModalBtn.textContent = 'Submit New Task';
+    submitDialogBtn.textContent = 'Submit New Task';
 
 }
 
@@ -69,9 +69,9 @@ function editFilter() {
             if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
 
                 formTitle.textContent = 'Edit Task';
-                submitModalBtn.textContent = 'Edit Task';
-                submitModalBtn.dataset.project = dataSetProject;
-                submitModalBtn.dataset.taskId = dataSetTaskId;
+                submitDialogBtn.textContent = 'Edit Task';
+                submitDialogBtn.dataset.project = dataSetProject;
+                submitDialogBtn.dataset.taskId = dataSetTaskId;
 
                 taskNameField.value = array[i].taskName;
                 taskDescField.value = array[i].taskDescription;
@@ -79,15 +79,15 @@ function editFilter() {
                 taskPriority.value = array[i].priority;
                 taskProject.value = array[i].project;
                 
-                showModal();
+                showDialog();
             }
         }
     }
 }
 
 function editToDo() {
-    const dataSetProject = submitModalBtn.dataset.project;
-    const dataSetTaskId = submitModalBtn.dataset.taskId;
+    const dataSetProject = submitDialogBtn.dataset.project;
+    const dataSetTaskId = submitDialogBtn.dataset.taskId;
     for (const projectArray in todoProjects) {
         const array = todoProjects[projectArray];
 
@@ -107,23 +107,23 @@ function editToDo() {
 
 function generalReset() {
     resetForm();
-    hideModal();
+    hideDialog();
     refreshDisplay();
     displayTodo();
     displayProjectButtons();
 }
 
-addNewTaskBtn.addEventListener('click', showModal);
-closeModalBtn.addEventListener('click', hideModal);
-// submitModalBtn.addEventListener('click', pushToDo);
+addNewTaskBtn.addEventListener('click', showDialog);
+closeDialogBtn.addEventListener('click', hideDialog);
+// submitDialogBtn.addEventListener('click', pushToDo);
 addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (submitModalBtn.textContent === 'Submit New Task') {
+    if (submitDialogBtn.textContent === 'Submit New Task') {
         pushToDo();
     } else {
         editToDo();
     }
 })
 
-export { showModal, hideModal, pushToDo, editButtonAddListener }
+export { showDialog, hideDialog, pushToDo, editButtonAddListener }
 

@@ -1,7 +1,7 @@
 // import { todoItem } from './todo_manager.js';
 import { v4 as uuidv4 } from 'uuid';
 import { todoProjects } from "./todo_manager";
-import { editButtonAddListener } from "./todo_modal";
+import { editButtonAddListener } from "./todo_input";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
