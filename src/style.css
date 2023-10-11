@@ -47,7 +47,7 @@ button {
     cursor: pointer;
 }
 
-.dialog_form {
+.dialog_container {
     background: #212020;
     color: #ffffff;
     padding: 30px;
@@ -63,7 +63,7 @@ button {
     border-color: #ff5a00;
 }
 
-.form-title {
+.dialog_title {
     color: #e3ff6f;
     font-weight: bold;
     font-size: 18px;

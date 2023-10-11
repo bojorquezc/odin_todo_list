@@ -14,7 +14,7 @@ function displayTodo() {
             todoContainer.classList.add('todo_container')
             mainContent.appendChild(todoContainer);
 
-            const taskButtonDiv =  document.createElement('div');
+            const taskButtonDiv = document.createElement('div');
             taskButtonDiv.classList.add('task_buttons');
             todoContainer.appendChild(taskButtonDiv);
 
@@ -129,7 +129,7 @@ function projectFilter() {
 function refreshDisplay() {
     const projectButtonsSection = document.querySelector('.project_buttons_section');
     const mainContent = document.querySelector('.content');
-    
+
     projectButtonsSection.replaceChildren();
     mainContent.replaceChildren();
 }
