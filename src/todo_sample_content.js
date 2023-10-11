@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { todoItem } from "./todo_manager";
+import { todoItem, todoProjects } from "./todo_manager";
 
 //sample todo tasks
 function loadSampleContent() {
@@ -11,6 +11,8 @@ function loadSampleContent() {
     
     const studyCode = todoItem('Study Coding This Afternoon', 'Spend 30 minutes learning about JS modules, add notes to black notebook', '2023-11-11T16:30', 'Medium', 'Study', uuidv4(), false);
     studyCode.createToDo();
+
+    console.table(todoProjects)
 }
 
 export { loadSampleContent };

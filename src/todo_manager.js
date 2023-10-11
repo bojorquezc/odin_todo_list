@@ -36,9 +36,7 @@ function pushToDo() {
     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
     newTask.createToDo();
     generalReset();
-
-    console.log(newTask.taskName);
-    console.log(todoProjects);
+    console.table(todoProjects)
 }
 
 function editFilter() {
@@ -79,9 +77,14 @@ function editToDo() {
                 array[i].taskDescription = form.taskDescField.value;
                 array[i].dueDate = form.taskDueDate.value;
                 array[i].priority = form.taskPriority.value;
-                array[i].project = form.taskProject.value;
-                console.log(array[i]);
+                if (form.taskProject.value === dataSetProject) {
+                    array[i].project = form.taskProject.value;
+                } else {
+                    array.splice(i, 1);
+                    pushToDo();
+                }
                 generalReset();
+                console.table(todoProjects)
             }
         }
     }
