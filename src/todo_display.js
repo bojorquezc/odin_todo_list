@@ -1,4 +1,4 @@
-import { todoProjects, editButtonAddListener, deleteButtonAddListener } from "./todo_manager";
+import { todoProjects, progressButtonAddListener, editButtonAddListener, deleteButtonAddListener } from "./todo_manager";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
@@ -26,7 +26,7 @@ function projectFilter() {
 
 // Display the buttons for navigation between projects
 function displayProjectButtons() {
-    const projectButtonsSection = document.querySelector('.project_buttons_section');
+    const projectButtonsSection = document.querySelector('.project_buttons');
 
     for (const projectArray in todoProjects) {
         const array = todoProjects[projectArray];
@@ -50,7 +50,7 @@ function projectButtonAddListener() {
 
 // Refresh the project tasks
 function refreshDisplay() {
-    const projectButtonsSection = document.querySelector('.project_buttons_section');
+    const projectButtonsSection = document.querySelector('.project_buttons');
     const mainContent = document.querySelector('.content');
 
     projectButtonsSection.replaceChildren();
@@ -67,6 +67,14 @@ function createTaskCardElements(projectArray, array, i) {
     taskButtonDiv.classList.add('task_buttons');
     todoContainer.appendChild(taskButtonDiv);
 
+    const progressButton = document.createElement('button');
+    progressButton.textContent = 'todo';
+    progressButton.classList.add('progress_button');
+    progressButton.dataset.project = projectArray;
+    progressButton.dataset.taskId = array[i].taskID;
+    taskButtonDiv.appendChild(progressButton);
+    progressButtonAddListener();
+
     const editButton = document.createElement('button');
     editButton.textContent = 'edit';
     editButton.classList.add('edit_button');
@@ -76,7 +84,7 @@ function createTaskCardElements(projectArray, array, i) {
     editButtonAddListener();
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'delete';
+    deleteButton.textContent = 'x';
     deleteButton.classList.add('delete_button');
     deleteButton.dataset.project = projectArray;
     deleteButton.dataset.taskId = array[i].taskID;

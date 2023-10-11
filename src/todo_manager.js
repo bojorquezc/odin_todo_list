@@ -28,8 +28,8 @@ function pushToDo() {
     const taskName = form.taskNameField.value;
     const taskDescription = form.taskDescField.value;
     const dueDate = form.taskDueDate.value;
-    const priority = form.taskPriority.value;
-    const project = form.taskProject.value;
+    const priority = form.taskPriority.value.toLowerCase();
+    const project = form.taskProject.value.toLowerCase();;
     const taskID = uuidv4();
     const completed = false;
 
@@ -37,6 +37,21 @@ function pushToDo() {
     newTask.createToDo();
     generalReset();
     console.table(todoProjects)
+}
+
+function progressToDo() {
+    for (const projectArray in todoProjects) {
+        const dataSetProject = this.dataset.project;
+        const dataSetTaskId = this.dataset.taskId;
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
+                array[i].completed = true;
+                console.table(todoProjects)
+            }
+        }
+    }
 }
 
 function editFilter() {
@@ -56,7 +71,7 @@ function editFilter() {
                 form.taskNameField.value = array[i].taskName;
                 form.taskDescField.value = array[i].taskDescription;
                 form.taskDueDate.value = array[i].dueDate;
-                form.taskPriority.value = array[i].priority;
+                form.taskPriority.value = array[i].priority.toLowerCase();
                 form.taskProject.value = array[i].project;
 
                 showDialog();
@@ -78,7 +93,7 @@ function editToDo() {
                 array[i].dueDate = form.taskDueDate.value;
                 array[i].priority = form.taskPriority.value;
                 if (form.taskProject.value === dataSetProject) {
-                    array[i].project = form.taskProject.value;
+                    array[i].project = form.taskProject.value.toLowerCase();
                 } else {
                     array.splice(i, 1);
                     pushToDo();
@@ -106,6 +121,13 @@ function deleteToDo() {
     }
 }
 
+function progressButtonAddListener() {
+    const progressButtons = document.querySelectorAll('.progress_button')
+    progressButtons.forEach((button) => {
+        button.addEventListener('click', progressToDo);
+    });
+}
+
 function editButtonAddListener() {
     const editButtons = document.querySelectorAll('.edit_button')
     editButtons.forEach((button) => {
@@ -120,4 +142,4 @@ function deleteButtonAddListener() {
     });
 }
 
-export { todoItem, pushToDo, deleteToDo, editButtonAddListener, editToDo, editFilter, deleteButtonAddListener, todoProjects };
+export { todoItem, pushToDo, deleteToDo, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, todoProjects };
