@@ -1,6 +1,7 @@
 import { pushToDo, editToDo } from "./todo_manager";
 import { displayTodo, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
 
+// Object to control task form
 const form = {
     addTaskForm: document.querySelector('.add_task_form'),
     taskNameField: document.querySelector('#taskName'),
@@ -10,48 +11,67 @@ const form = {
     taskProject: document.querySelector('#project'),
 }
 
-const dialog = {
-    taskDialog: document.querySelector('.dialog_container'),
-    title: document.querySelector('.dialog_title'),
-    addNewTaskBtn: document.querySelector('.add_task_button'),
-    closeBtn: document.querySelector('.close_dialog'),
-    submitBtn: document.querySelector('.submit_btn')
-}
-
-function showDialog() {
-    dialog.taskDialog.style.display = 'block';
-}
-
-function hideDialog() {
-    dialog.taskDialog.style.display = 'none';
-    resetForm();
-}
-
-function resetForm() {
-    form.addTaskForm.reset();
-    dialog.title.textContent = 'Add a new task';
-    dialog.submitBtn.textContent = 'Submit New Task';
-
-}
-
-function generalReset() {
-    resetForm();
-    hideDialog();
-    refreshDisplay();
-    displayTodo();
-    displayProjectButtons();
-    displayProgressStatus();
-}
-
-dialog.addNewTaskBtn.addEventListener('click', showDialog);
-dialog.closeBtn.addEventListener('click', hideDialog);
 form.addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (dialog.submitBtn.textContent === 'Submit New Task') {
+    if (taskDialog.submitBtn.textContent === 'Submit New Task') {
         pushToDo();
     } else {
         editToDo();
     }
 })
 
-export { showDialog, hideDialog, pushToDo, generalReset, form, dialog }
+// Object to control task dialog
+const taskDialog = {
+    dialog: document.querySelector('.tasks_dialog'),
+    title: document.querySelector('.dialog_title'),
+    addNewTaskBtn: document.querySelector('.add_task_button'),
+    closeBtn: document.querySelector('.close_dialog'),
+    submitBtn: document.querySelector('.submit_btn')
+}
+
+function showTaskDialog() {
+    taskDialog.dialog.style.display = 'block';
+}
+
+function hideTaskDialog() {
+    taskDialog.dialog.style.display = 'none';
+    resetTaskForm();
+}
+
+taskDialog.addNewTaskBtn.addEventListener('click', showTaskDialog);
+taskDialog.closeBtn.addEventListener('click', hideTaskDialog);
+
+// Object to control project dialog
+const projectDialog = {
+    dialog: document.querySelector('.projects_dialog'),
+    manageProjectsBtn: document.querySelector('.manage_project_button')
+}
+
+function showProjectDialog() {
+    projectDialog.dialog.style.display = 'block';
+}
+
+function hideProjectDialog() {
+    projectDialog.dialog.style.display = 'none';
+}
+
+projectDialog.manageProjectsBtn.addEventListener('click', showProjectDialog);
+
+
+function resetTaskForm() {
+    form.addTaskForm.reset();
+    taskDialog.title.textContent = 'Add a new task';
+    taskDialog.submitBtn.textContent = 'Submit New Task';
+
+}
+
+function generalReset() {
+    resetTaskForm();
+    hideTaskDialog();
+    refreshDisplay();
+    displayTodo();
+    displayProjectButtons();
+    displayProgressStatus();
+}
+
+export { showTaskDialog, hideTaskDialog, pushToDo, generalReset, form, taskDialog, projectDialog }

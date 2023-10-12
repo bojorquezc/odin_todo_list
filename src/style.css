@@ -47,7 +47,7 @@ button {
     cursor: pointer;
 }
 
-.dialog_container {
+.tasks_dialog {
     position: absolute;
     top: 10%;
     /* left: 50%; */
@@ -158,11 +158,13 @@ button {
 
 .content {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem;
 }
 
 .todo_container {
+    width: 300px;
     padding: 2rem;
     line-height: 1.8rem;
     font-size: 16px;

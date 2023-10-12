@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-import { form, dialog, showDialog, generalReset } from './todo_form_control';
+import { form, taskDialog, showTaskDialog, generalReset } from './todo_form_control';
 
 //todo_manager.js takes care of the basic CRUD operations of the todo list project
 const todoProjects = {
-    Default: []
+    no_project: []
 };
 
 const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
@@ -72,10 +72,10 @@ function editFilter() {
         for (let i = 0; i < array.length; i++) {
             if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
 
-                dialog.title.textContent = 'Edit Task';
-                dialog.submitBtn.textContent = 'Edit Task';
-                dialog.submitBtn.dataset.project = dataSetProject;
-                dialog.submitBtn.dataset.taskId = dataSetTaskId;
+                taskDialog.title.textContent = 'Edit Task';
+                taskDialog.submitBtn.textContent = 'Edit Task';
+                taskDialog.submitBtn.dataset.project = dataSetProject;
+                taskDialog.submitBtn.dataset.taskId = dataSetTaskId;
 
                 form.taskNameField.value = array[i].taskName;
                 form.taskDescField.value = array[i].taskDescription;
@@ -83,15 +83,15 @@ function editFilter() {
                 form.taskPriority.value = array[i].priority.toLowerCase();
                 form.taskProject.value = array[i].project;
 
-                showDialog();
+                showTaskDialog();
             }
         }
     }
 }
 
 function editToDo() {
-    const dataSetProject = dialog.submitBtn.dataset.project;
-    const dataSetTaskId = dialog.submitBtn.dataset.taskId;
+    const dataSetProject = taskDialog.submitBtn.dataset.project;
+    const dataSetTaskId = taskDialog.submitBtn.dataset.taskId;
     for (const projectArray in todoProjects) {
         const array = todoProjects[projectArray];
 
