@@ -103,17 +103,27 @@ button {
     border-color: #ff5a00;
 }
 
+.project_button_container {
+    display: flex;
+}
+
+.project_button_all {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 2rem;
+}
+
 .project_buttons_title {
     padding: 0.5rem 2rem;
 }
 
 .project_buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 0.5rem 2rem;
 }
 
-.project_button {
+.project_button, .all_button {
     padding: 10px;
     font-family: monospace;
     color: #00b6df;
@@ -161,7 +171,7 @@ button {
 
 .task_buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 1rem 0 2rem 0;
 }
 

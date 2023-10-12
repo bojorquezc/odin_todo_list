@@ -48,7 +48,7 @@ function progressToDo() {
         for (let i = 0; i < array.length; i++) {
             if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === false) {
                 array[i].completed = true;
-                this.textContent = 'Complete';
+                this.textContent = 'complete';
                 this.classList.remove('progress_button');
                 this.classList.add('complete_progress_button');
                 console.table(todoProjects)
@@ -130,6 +130,12 @@ function deleteToDo() {
     }
 }
 
+
+function allTaskButtonAddListener() {
+    const allTaskButton = document.querySelector('.all_button');
+    allTaskButton.addEventListener('click', generalReset)
+}
+
 function progressButtonAddListener() {
     const progressButtons = document.querySelectorAll('.progress_button')
     progressButtons.forEach((button) => {
@@ -151,4 +157,5 @@ function deleteButtonAddListener() {
     });
 }
 
-export { todoItem, pushToDo, deleteToDo, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, progressToDo, todoProjects };
+
+export { todoItem, pushToDo, deleteToDo, allTaskButtonAddListener, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, progressToDo, todoProjects };

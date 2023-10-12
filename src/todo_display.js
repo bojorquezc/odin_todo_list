@@ -33,7 +33,7 @@ function displayProgressStatus() {
                 const progressButtons = document.querySelectorAll('.progress_button')
                 progressButtons.forEach((button) => {
                     if (button.dataset.taskId === array[i].taskID) {
-                        button.textContent = 'Complete';
+                        button.textContent = 'complete';
                         button.classList.remove('progress_button');
                         button.classList.add('complete_progress_button');
                     }
