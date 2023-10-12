@@ -46,10 +46,20 @@ function progressToDo() {
         const array = todoProjects[projectArray];
 
         for (let i = 0; i < array.length; i++) {
-            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === false) {
                 array[i].completed = true;
+                this.textContent = 'Complete';
+                this.classList.remove('progress_button');
+                this.classList.add('complete_progress_button');
+                console.table(todoProjects)
+            } else if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === true) {
+                array[i].completed = false;
+                this.textContent = 'todo';
+                this.classList.add('progress_button');
+                this.classList.remove('complete_progress_button');
                 console.table(todoProjects)
             }
+            // generalReset();
         }
     }
 }

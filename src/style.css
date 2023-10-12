@@ -184,6 +184,11 @@ button {
     border-color: #929292;
 }
 
+.task_buttons > .complete_progress_button {
+    color: #00bf53;
+    border-color: #00bf53;
+}
+
 .card-title {
     color: #00e500;
     font-weight: bolder;
