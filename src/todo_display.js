@@ -22,6 +22,25 @@ function projectFilter() {
             }
         }
     }
+    displayProgressStatus();
+}
+
+function displayProgressStatus() {
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].completed === true) {
+                const progressButtons = document.querySelectorAll('.progress_button')
+                progressButtons.forEach((button) => {
+                    if (button.dataset.taskId === array[i].taskID) {
+                        button.textContent = 'Complete';
+                        button.classList.remove('progress_button');
+                        button.classList.add('complete_progress_button');
+                    }
+                });
+            }
+        }
+    }
 }
 
 // Display the buttons for navigation between projects
@@ -132,4 +151,4 @@ function createTaskCardElements(projectArray, array, i) {
     todoContainer.appendChild(project);
 }
 
-export { displayTodo, refreshDisplay, displayProjectButtons };
+export { displayTodo, refreshDisplay, displayProjectButtons, displayProgressStatus };

@@ -1,5 +1,5 @@
 import { pushToDo, editToDo } from "./todo_manager";
-import { displayTodo, refreshDisplay, displayProjectButtons } from "./todo_display";
+import { displayTodo, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
 
 const form = {
     addTaskForm: document.querySelector('.add_task_form'),
@@ -40,6 +40,7 @@ function generalReset() {
     refreshDisplay();
     displayTodo();
     displayProjectButtons();
+    displayProgressStatus();
 }
 
 dialog.addNewTaskBtn.addEventListener('click', showDialog);

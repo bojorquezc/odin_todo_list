@@ -59,7 +59,6 @@ function progressToDo() {
                 this.classList.remove('complete_progress_button');
                 console.table(todoProjects)
             }
-            // generalReset();
         }
     }
 }
@@ -152,4 +151,4 @@ function deleteButtonAddListener() {
     });
 }
 
-export { todoItem, pushToDo, deleteToDo, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, todoProjects };
+export { todoItem, pushToDo, deleteToDo, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, progressToDo, todoProjects };
