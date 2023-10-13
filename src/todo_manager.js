@@ -8,6 +8,18 @@ const todoProjects = {
     no_project: []
 };
 
+// Add a project to the todoProjects object
+function addProjectFromDialog(project) {
+    const projectExists = project in todoProjects;
+        if (projectExists === true) {
+            alert('Project exists, please add a different name to the project');
+        } else {
+            todoProjects[`${project}`] = [];
+            console.log(`Create project array: ${project}`)
+            console.table(todoProjects)
+        }
+}
+
 // Delete a project from the todoProjects object
 function deleteProjectFromDialog() {
     for (const projectArray in todoProjects) {
@@ -156,4 +168,4 @@ function deleteToDo() {
 }
 
 
-export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, deleteProjectFromDialog, progressToDo, todoProjects };
+export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, addProjectFromDialog, deleteProjectFromDialog, progressToDo, todoProjects };

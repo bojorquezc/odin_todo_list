@@ -173,6 +173,7 @@ function createTaskCardElements(projectArray, array, i) {
 }
 
 // Add listeners section
+
 function deleteProjectButtonDialogAddListener() {
     const deleteProjectButtons = document.querySelectorAll('.project_delete_button')
     deleteProjectButtons.forEach((button) => {

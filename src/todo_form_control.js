@@ -1,4 +1,4 @@
-import { pushToDo, editToDo } from "./todo_manager";
+import { pushToDo, editToDo, addProjectFromDialog } from "./todo_manager";
 import { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
 
 // Object to control task form
@@ -47,7 +47,9 @@ const projectDialog = {
     projectContainer: document.querySelector('.project_list_container'),
     manageProjectsBtn: document.querySelector('.manage_project_button'),
     closeBtn: document.querySelector('.close_project_dialog'),
-    projectListContainer: document.querySelector('.project_list_container')
+    projectListContainer: document.querySelector('.project_list_container'),
+    projectInput: document.getElementById('new_project_input'),
+    projectSubmitBtn: document.querySelector('.new_project_submit')
 }
 
 function showProjectDialog() {
@@ -61,6 +63,10 @@ function hideProjectDialog() {
 
 projectDialog.manageProjectsBtn.addEventListener('click', showProjectDialog);
 projectDialog.closeBtn.addEventListener('click', hideProjectDialog);
+const projectInputValue = projectDialog.projectInput.value.toLowerCase();
+projectDialog.projectSubmitBtn.addEventListener('click', () => {
+    addProjectFromDialog(projectInputValue)
+});
 
 
 function resetTaskForm() {
