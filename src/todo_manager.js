@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { form, taskDialog, showTaskDialog, generalReset } from './todo_form_control';
 
-//todo_manager.js takes care of the basic CRUD operations of the todo list project
+// Object to hold projects, each project is an array
 const todoProjects = {
     no_project: []
 };
 
+// Factory function to create todo items
 const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
     
     function createToDo() {
@@ -24,6 +25,7 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID,
     return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo }
 }
 
+// Push to do from the task form into the todoprojects object
 function pushToDo() {
     const taskName = form.taskNameField.value;
     const taskDescription = form.taskDescField.value;
@@ -39,6 +41,7 @@ function pushToDo() {
     console.table(todoProjects)
 }
 
+// Read the completed status and either mark the task as "complete" or "todo"
 function progressToDo() {
     for (const projectArray in todoProjects) {
         const dataSetProject = this.dataset.project;
@@ -63,6 +66,7 @@ function progressToDo() {
     }
 }
 
+// Show task information when edit button is clicked in the todo task card
 function editFilter() {
     for (const projectArray in todoProjects) {
         const dataSetProject = this.dataset.project;
@@ -89,6 +93,7 @@ function editFilter() {
     }
 }
 
+// Update the todo after the task form information has been edited
 function editToDo() {
     const dataSetProject = taskDialog.submitBtn.dataset.project;
     const dataSetTaskId = taskDialog.submitBtn.dataset.taskId;
@@ -114,6 +119,7 @@ function editToDo() {
     }
 }
 
+// Delete a todo, it removes it from the project array
 function deleteToDo() {
     for (const projectArray in todoProjects) {
         const dataSetProject = this.dataset.project;

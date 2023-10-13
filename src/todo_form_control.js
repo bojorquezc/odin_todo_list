@@ -1,5 +1,5 @@
 import { pushToDo, editToDo } from "./todo_manager";
-import { displayTodo, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
+import { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
 
 // Object to control task form
 const form = {
@@ -23,9 +23,9 @@ form.addTaskForm.addEventListener('submit', (e) => {
 // Object to control task dialog
 const taskDialog = {
     dialog: document.querySelector('.tasks_dialog'),
-    title: document.querySelector('.dialog_title'),
+    title: document.querySelector('.task_dialog_title'),
     addNewTaskBtn: document.querySelector('.add_task_button'),
-    closeBtn: document.querySelector('.close_dialog'),
+    closeBtn: document.querySelector('.close_task_dialog'),
     submitBtn: document.querySelector('.submit_btn')
 }
 
@@ -44,11 +44,15 @@ taskDialog.closeBtn.addEventListener('click', hideTaskDialog);
 // Object to control project dialog
 const projectDialog = {
     dialog: document.querySelector('.projects_dialog'),
-    manageProjectsBtn: document.querySelector('.manage_project_button')
+    projectContainer: document.querySelector('.project_list_container'),
+    manageProjectsBtn: document.querySelector('.manage_project_button'),
+    closeBtn: document.querySelector('.close_project_dialog'),
+    projectListContainer: document.querySelector('.project_list_container')
 }
 
 function showProjectDialog() {
     projectDialog.dialog.style.display = 'block';
+    displayManageProjects();
 }
 
 function hideProjectDialog() {
@@ -56,6 +60,7 @@ function hideProjectDialog() {
 }
 
 projectDialog.manageProjectsBtn.addEventListener('click', showProjectDialog);
+projectDialog.closeBtn.addEventListener('click', hideProjectDialog);
 
 
 function resetTaskForm() {

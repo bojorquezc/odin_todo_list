@@ -1,4 +1,5 @@
 import { todoProjects, progressButtonAddListener, editButtonAddListener, deleteButtonAddListener } from "./todo_manager";
+import { projectDialog } from "./todo_form_control";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
@@ -10,36 +11,11 @@ function displayTodo() {
     }
 }
 
-// Create a todo card per todo by filtering per project
-function projectFilter() {
-    refreshDisplay();
-    displayProjectButtons();
+// Display projects in "Manage Projects" dialog
+function displayManageProjects() {
+    projectDialog.projectListContainer.replaceChildren();
     for (const projectArray in todoProjects) {
-        const array = todoProjects[projectArray];
-        for (let i = 0; i < array.length; i++) {
-            if (projectArray === this.id) {
-                createTaskCardElements(projectArray, array, i);
-            }
-        }
-    }
-    displayProgressStatus();
-}
-
-function displayProgressStatus() {
-    for (const projectArray in todoProjects) {
-        const array = todoProjects[projectArray];
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].completed === true) {
-                const progressButtons = document.querySelectorAll('.progress_button')
-                progressButtons.forEach((button) => {
-                    if (button.dataset.taskId === array[i].taskID) {
-                        button.textContent = 'complete';
-                        button.classList.remove('progress_button');
-                        button.classList.add('complete_progress_button');
-                    }
-                });
-            }
-        }
+        createManageProjectsList(projectArray);
     }
 }
 
@@ -60,14 +36,49 @@ function displayProjectButtons() {
     projectButtonAddListener();
 }
 
+// Add listeners to project buttons
 function projectButtonAddListener() {
     const projectButtons = document.querySelectorAll('.project_button')
     projectButtons.forEach((button) => {
-        button.addEventListener('click', projectFilter)
+        button.addEventListener('click', projectButtonFilter)
     });
 }
 
-// Refresh the project tasks
+// Add project filtering options, showing only todo card for filtered items
+function projectButtonFilter() {
+    refreshDisplay();
+    displayProjectButtons();
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === this.id) {
+                createTaskCardElements(projectArray, array, i);
+            }
+        }
+    }
+    displayProgressStatus();
+}
+
+// Allow the option to set a task to 'complete' or vice versa in the todo card
+function displayProgressStatus() {
+    for (const projectArray in todoProjects) {
+        const array = todoProjects[projectArray];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].completed === true) {
+                const progressButtons = document.querySelectorAll('.progress_button')
+                progressButtons.forEach((button) => {
+                    if (button.dataset.taskId === array[i].taskID) {
+                        button.textContent = 'complete';
+                        button.classList.remove('progress_button');
+                        button.classList.add('complete_progress_button');
+                    }
+                });
+            }
+        }
+    }
+}
+
+// Refresh dynamically created elements
 function refreshDisplay() {
     const projectButtonsSection = document.querySelector('.project_buttons');
     const mainContent = document.querySelector('.content');
@@ -76,6 +87,21 @@ function refreshDisplay() {
     mainContent.replaceChildren();
 }
 
+
+// Create rows for each project
+function createManageProjectsList(project) {
+    const projectRow = document.createElement('div');
+    projectRow.classList.add('project_row');
+    projectRow.textContent = project;
+    projectDialog.projectListContainer.appendChild(projectRow);
+
+    const deleteProjectButton = document.createElement('button');
+    deleteProjectButton.classList.add('project_delete_button');
+    deleteProjectButton.textContent = 'x';
+    projectRow.appendChild(deleteProjectButton);
+}
+
+// Create todo cards for each task
 function createTaskCardElements(projectArray, array, i) {
     const mainContent = document.querySelector('.content');
     const todoContainer = document.createElement('div');
@@ -151,4 +177,4 @@ function createTaskCardElements(projectArray, array, i) {
     todoContainer.appendChild(project);
 }
 
-export { displayTodo, refreshDisplay, displayProjectButtons, displayProgressStatus };
+export { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus };

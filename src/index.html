@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/406a12ef4f.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <h1>terminal.todo</h1>
@@ -34,43 +36,51 @@
             </div>
         </div>
     </div>
-        <dialog class="tasks_dialog">
-            <form class="add_task_form" method="dialog" name="addtaskform">
-                <div class="form-close-btn">
-                    <button type="button" class="close_dialog"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <p class="dialog_title">Add a new task</p>
-                <div class="form-field">
-                    <label for="task_name">Task Name:</label>
-                    <input type="text" id="taskName" placeholder="Task Name">
-                </div>
-                <div class="form-field">
-                    <label for="task_description">Task Description:</label>
-                    <textarea name="taskDesc" id="taskDesc" cols="30" rows="4" placeholder="Task Description"></textarea>
-                    <!-- <input type="text" id="taskDesc" placeholder="Task Description"> -->
-                </div>
-                <div class="form-field">
-                    <label for="due_date">Due Date:</label>
-                    <input type="datetime-local" id="dueDate" placeholder="Due Date">
-                </div>
-                <div class="form-field">
-                    <label for="priority">Priority:</label>
-                    <select name="priority" id="priority">
-                        <option value="low">low</option>
-                        <option value="medium">medium</option>
-                        <option value="high">high</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="project">Project:</label>
-                    <input type="text" id="project" placeholder="Project">
-                </div>
-                <button type="submit" class="submit_btn">Submit New Task</button>
-                <button type="submit" class="edit_btn">Edit Task</button>
-            </form>
-        </dialog>
-        <dialog class="projects_dialog">
-        </dialog>
+    <dialog class="tasks_dialog">
+        <form class="add_task_form" method="dialog" name="addtaskform">
+            <div class="form-close-btn">
+                <button type="button" class="close_task_dialog"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="task_dialog_title">Add a new task</p>
+            <div class="form-field">
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="taskName" placeholder="Task Name">
+            </div>
+            <div class="form-field">
+                <label for="task_description">Task Description:</label>
+                <textarea name="taskDesc" id="taskDesc" cols="30" rows="4" placeholder="Task Description"></textarea>
+                <!-- <input type="text" id="taskDesc" placeholder="Task Description"> -->
+            </div>
+            <div class="form-field">
+                <label for="due_date">Due Date:</label>
+                <input type="datetime-local" id="dueDate" placeholder="Due Date">
+            </div>
+            <div class="form-field">
+                <label for="priority">Priority:</label>
+                <select name="priority" id="priority">
+                    <option value="low">low</option>
+                    <option value="medium">medium</option>
+                    <option value="high">high</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="project">Project:</label>
+                <input type="text" id="project" placeholder="Project">
+            </div>
+            <button type="submit" class="submit_btn">Submit New Task</button>
+            <button type="submit" class="edit_btn">Edit Task</button>
+        </form>
+    </dialog>
+    <dialog class="projects_dialog">
+        <div class="form-close-btn">
+            <button type="button" class="close_project_dialog"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="project_dialog_title">Manage Projects</p>
+        <p class="project_dialog_description">Add new projects or delete projects. "no_project" is the default project
+            status if a project is not selected.</p>
+        <div class="project_list_container"></div>
+    </dialog>
     <div class="content"></div>
 </body>
+
 </html>
