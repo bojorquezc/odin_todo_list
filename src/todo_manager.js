@@ -1,10 +1,29 @@
 import { v4 as uuidv4 } from 'uuid';
 import { form, taskDialog, showTaskDialog, generalReset } from './todo_form_control';
+import { projectDialog } from './todo_form_control';
+import { displayManageProjects } from './todo_display';
 
 // Object to hold projects, each project is an array
 const todoProjects = {
     no_project: []
 };
+
+// Delete a project from the todoProjects object
+function deleteProjectFromDialog() {
+    for (const projectArray in todoProjects) {
+        if (this.dataset.project === projectArray) {
+            const array = todoProjects[projectArray];
+            for (let i = 0; i < array.length; i++) {
+                array[i].project = 'no_project';
+                todoProjects['no_project'].push(array[i]);
+            }
+            delete todoProjects[projectArray];
+        }
+    }
+    generalReset();
+    displayManageProjects();
+    console.table(todoProjects)
+}
 
 // Factory function to create todo items
 const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
@@ -25,7 +44,7 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID,
     return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo }
 }
 
-// Push to do from the task form into the todoprojects object
+// Push to do from the task form into the todoProjects object
 function pushToDo() {
     const taskName = form.taskNameField.value;
     const taskDescription = form.taskDescField.value;
@@ -137,31 +156,4 @@ function deleteToDo() {
 }
 
 
-function allTaskButtonAddListener() {
-    const allTaskButton = document.querySelector('.all_button');
-    allTaskButton.addEventListener('click', generalReset)
-}
-
-function progressButtonAddListener() {
-    const progressButtons = document.querySelectorAll('.progress_button')
-    progressButtons.forEach((button) => {
-        button.addEventListener('click', progressToDo);
-    });
-}
-
-function editButtonAddListener() {
-    const editButtons = document.querySelectorAll('.edit_button')
-    editButtons.forEach((button) => {
-        button.addEventListener('click', editFilter)
-    });
-}
-
-function deleteButtonAddListener() {
-    const deleteButtons = document.querySelectorAll('.delete_button')
-    deleteButtons.forEach((button) => {
-        button.addEventListener('click', deleteToDo)
-    });
-}
-
-
-export { todoItem, pushToDo, deleteToDo, allTaskButtonAddListener, progressButtonAddListener, deleteButtonAddListener, editButtonAddListener, editToDo, editFilter, progressToDo, todoProjects };
+export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, deleteProjectFromDialog, progressToDo, todoProjects };

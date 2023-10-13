@@ -1,5 +1,5 @@
-import { todoProjects, progressButtonAddListener, editButtonAddListener, deleteButtonAddListener } from "./todo_manager";
-import { projectDialog } from "./todo_form_control";
+import { todoProjects, progressToDo, editFilter, deleteToDo, deleteProjectFromDialog } from "./todo_manager";
+import { projectDialog, generalReset } from "./todo_form_control";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
@@ -34,14 +34,6 @@ function displayProjectButtons() {
         }
     }
     projectButtonAddListener();
-}
-
-// Add listeners to project buttons
-function projectButtonAddListener() {
-    const projectButtons = document.querySelectorAll('.project_button')
-    projectButtons.forEach((button) => {
-        button.addEventListener('click', projectButtonFilter)
-    });
 }
 
 // Add project filtering options, showing only todo card for filtered items
@@ -87,7 +79,6 @@ function refreshDisplay() {
     mainContent.replaceChildren();
 }
 
-
 // Create rows for each project
 function createManageProjectsList(project) {
     const projectRow = document.createElement('div');
@@ -98,7 +89,9 @@ function createManageProjectsList(project) {
     const deleteProjectButton = document.createElement('button');
     deleteProjectButton.classList.add('project_delete_button');
     deleteProjectButton.textContent = 'x';
+    deleteProjectButton.dataset.project = project;
     projectRow.appendChild(deleteProjectButton);
+    deleteProjectButtonDialogAddListener()
 }
 
 // Create todo cards for each task
@@ -177,4 +170,45 @@ function createTaskCardElements(projectArray, array, i) {
     todoContainer.appendChild(project);
 }
 
-export { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus };
+// Add listeners section
+function deleteProjectButtonDialogAddListener() {
+    const deleteProjectButtons = document.querySelectorAll('.project_delete_button')
+    deleteProjectButtons.forEach((button) => {
+        button.addEventListener('click', deleteProjectFromDialog)
+    })
+}
+
+function projectButtonAddListener() {
+    const projectButtons = document.querySelectorAll('.project_button')
+    projectButtons.forEach((button) => {
+        button.addEventListener('click', projectButtonFilter)
+    });
+}
+
+function allTaskButtonAddListener() {
+    const allTaskButton = document.querySelector('.all_button');
+    allTaskButton.addEventListener('click', generalReset)
+}
+
+function progressButtonAddListener() {
+    const progressButtons = document.querySelectorAll('.progress_button')
+    progressButtons.forEach((button) => {
+        button.addEventListener('click', progressToDo);
+    });
+}
+
+function editButtonAddListener() {
+    const editButtons = document.querySelectorAll('.edit_button')
+    editButtons.forEach((button) => {
+        button.addEventListener('click', editFilter)
+    });
+}
+
+function deleteButtonAddListener() {
+    const deleteButtons = document.querySelectorAll('.delete_button')
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', deleteToDo)
+    });
+}
+
+export { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus, allTaskButtonAddListener };
