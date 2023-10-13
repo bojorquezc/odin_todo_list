@@ -102,9 +102,36 @@ button {
     box-sizing: border-box;
 }
 
+.submit_new_project_section {
+    padding: 1rem 0 1rem 0;
+}
+
+.submit_new_project_section button {
+    width: 100%;
+    padding: 10px;
+    font-family: monospace;
+    color: #00bf53;
+    background-color: #ffffff00;
+    border-style: solid;
+    border-color: #00bf53;
+}
+
+.submit_new_project_input input {
+    font-family: monospace;
+    width: 100%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+
 .project_dialog_description {
     font-size: 12px;
     padding-bottom: 1rem;
+}
+
+.project_list_title {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 1rem 0 1rem 0;
 }
 
 .project_row {

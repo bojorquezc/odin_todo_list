@@ -78,7 +78,18 @@
         <p class="project_dialog_title">Manage Projects</p>
         <p class="project_dialog_description">Add new projects or delete projects. "no_project" is the default project
             status if a project is not selected.</p>
-        <div class="project_list_container"></div>
+        <div class="submit_new_project_section">
+            <div class="submit_new_project_input">
+                <p class="project_list_title">Add New Project:</p>
+                <input type="text" name="new_project_input" id="new_project_input" placeholder="Enter new project name">
+            </div>
+            <button>
+                Submit
+            </button>
+        </div>
+        <p class="project_list_title">Current projects:</p>
+        <div class="project_list_container">
+        </div>
     </dialog>
     <div class="content"></div>
 </body>

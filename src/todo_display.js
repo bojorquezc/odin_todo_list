@@ -11,11 +11,13 @@ function displayTodo() {
     }
 }
 
-// Display projects in "Manage Projects" dialog
+// Display projects in "Manage Projects" dialog. Ignore 'no_project' since that is the default project
 function displayManageProjects() {
     projectDialog.projectListContainer.replaceChildren();
     for (const projectArray in todoProjects) {
-        createManageProjectsList(projectArray);
+        if (projectArray !== 'no_project') {
+            createManageProjectsList(projectArray);
+        }
     }
 }
 
