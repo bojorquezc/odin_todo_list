@@ -63,9 +63,14 @@ function hideProjectDialog() {
 
 projectDialog.manageProjectsBtn.addEventListener('click', showProjectDialog);
 projectDialog.closeBtn.addEventListener('click', hideProjectDialog);
-const projectInputValue = projectDialog.projectInput.value.toLowerCase();
+
+// Add a new project from project input, do a general reset
 projectDialog.projectSubmitBtn.addEventListener('click', () => {
-    addProjectFromDialog(projectInputValue)
+    const projectInputValue = projectDialog.projectInput.value;
+    addProjectFromDialog(projectInputValue.toLowerCase())
+    projectDialog.projectInput.value = '';
+    generalReset();
+    displayManageProjects();
 });
 
 

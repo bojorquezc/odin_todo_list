@@ -13,6 +13,8 @@ function addProjectFromDialog(project) {
     const projectExists = project in todoProjects;
         if (projectExists === true) {
             alert('Project exists, please add a different name to the project');
+        } else if (projectDialog.projectInput.value === '') {
+            alert('Enter a project name, project name can\'t be empty');
         } else {
             todoProjects[`${project}`] = [];
             console.log(`Create project array: ${project}`)
