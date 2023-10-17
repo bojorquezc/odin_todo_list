@@ -8,6 +8,81 @@ const todoProjects = {
     no_project: []
 };
 
+const todoProjectsDeserialized = JSON.parse(localStorage.getItem('todoProjectsSerialized'));
+
+
+function saveLocalStorage() {
+    const todoProjectsSerialized = JSON.stringify(todoProjects);
+    localStorage.setItem('todoProjectsSerialized', todoProjectsSerialized);
+}
+
+function fetchLocalStorage() {
+    const todoProjectsDeserialized = JSON.parse(localStorage.getItem('todoProjectsSerialized'));
+    console.log(todoProjectsDeserialized);
+}
+
+// Factory function to create todo items
+const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
+    
+    function createToDo() {
+        const projectExists = project in todoProjects;
+        if (projectExists === true) {
+            console.log(`Push to existing project: ${project}`)
+            todoProjects[`${project}`].push(this);
+        } else {
+            todoProjects[`${project}`] = [];
+            console.log(`Create project array: ${project}`)
+            todoProjects[`${project}`].push(this);
+            console.log(`Push to project: ${project}`)
+        }
+    }
+
+    return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo }
+}
+
+// Push to do from the task form into the todoProjects object
+function pushToDo() {
+    const taskName = form.taskNameField.value;
+    const taskDescription = form.taskDescField.value;
+    const dueDate = form.taskDueDate.value;
+    const priority = form.taskPriority.value.toLowerCase();
+    const project = form.taskProject.value.toLowerCase();;
+    const taskID = uuidv4();
+    const completed = false;
+
+    const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
+    newTask.createToDo();
+    generalReset();
+    console.table(todoProjects)
+    saveLocalStorage();
+    fetchLocalStorage();
+}
+
+// Read the completed status and either mark the task as "complete" or "todo"
+function progressToDo() {
+    for (const projectArray in todoProjects) {
+        const dataSetProject = this.dataset.project;
+        const dataSetTaskId = this.dataset.taskId;
+        const array = todoProjects[projectArray];
+
+        for (let i = 0; i < array.length; i++) {
+            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === false) {
+                array[i].completed = true;
+                this.textContent = 'complete';
+                this.classList.remove('progress_button');
+                this.classList.add('complete_progress_button');
+                console.table(todoProjects)
+            } else if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === true) {
+                array[i].completed = false;
+                this.textContent = 'todo';
+                this.classList.add('progress_button');
+                this.classList.remove('complete_progress_button');
+                console.table(todoProjects)
+            }
+        }
+    }
+}
+
 // Show the available projects in the select dropdown for the task form dialog
 function showProjectsInSelect() {
     const projectSelectField = document.getElementById('project');
@@ -49,66 +124,6 @@ function deleteProjectFromDialog() {
     generalReset();
     displayManageProjects();
     console.table(todoProjects)
-}
-
-// Factory function to create todo items
-const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID, completed) => {
-    
-    function createToDo() {
-        const projectExists = project in todoProjects;
-        if (projectExists === true) {
-            console.log(`Push to existing project: ${project}`)
-            todoProjects[`${project}`].push(this);
-        } else {
-            todoProjects[`${project}`] = [];
-            console.log(`Create project array: ${project}`)
-            todoProjects[`${project}`].push(this);
-            console.log(`Push to project: ${project}`)
-        }
-    }
-
-    return { taskName, taskDescription, dueDate, priority, project, taskID, completed, createToDo }
-}
-
-// Push to do from the task form into the todoProjects object
-function pushToDo() {
-    const taskName = form.taskNameField.value;
-    const taskDescription = form.taskDescField.value;
-    const dueDate = form.taskDueDate.value;
-    const priority = form.taskPriority.value.toLowerCase();
-    const project = form.taskProject.value.toLowerCase();;
-    const taskID = uuidv4();
-    const completed = false;
-
-    const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
-    newTask.createToDo();
-    generalReset();
-    console.table(todoProjects)
-}
-
-// Read the completed status and either mark the task as "complete" or "todo"
-function progressToDo() {
-    for (const projectArray in todoProjects) {
-        const dataSetProject = this.dataset.project;
-        const dataSetTaskId = this.dataset.taskId;
-        const array = todoProjects[projectArray];
-
-        for (let i = 0; i < array.length; i++) {
-            if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === false) {
-                array[i].completed = true;
-                this.textContent = 'complete';
-                this.classList.remove('progress_button');
-                this.classList.add('complete_progress_button');
-                console.table(todoProjects)
-            } else if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === true) {
-                array[i].completed = false;
-                this.textContent = 'todo';
-                this.classList.add('progress_button');
-                this.classList.remove('complete_progress_button');
-                console.table(todoProjects)
-            }
-        }
-    }
 }
 
 // Show task information when edit button is clicked in the todo task card
