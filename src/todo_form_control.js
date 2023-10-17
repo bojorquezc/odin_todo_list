@@ -1,4 +1,4 @@
-import { pushToDo, editToDo, addProjectFromDialog } from "./todo_manager";
+import { pushToDo, editToDo, addProjectFromDialog, showProjectsInSelect } from "./todo_manager";
 import { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
 
 // Object to control task form
@@ -31,6 +31,7 @@ const taskDialog = {
 
 function showTaskDialog() {
     taskDialog.dialog.style.display = 'block';
+    showProjectsInSelect();
 }
 
 function hideTaskDialog() {

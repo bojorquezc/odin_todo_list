@@ -8,6 +8,18 @@ const todoProjects = {
     no_project: []
 };
 
+// Show the available projects in the select dropdown for the task form dialog
+function showProjectsInSelect() {
+    const projectSelectField = document.getElementById('project');
+    projectSelectField.replaceChildren();
+    for (const projectArray in todoProjects) {
+        const optionProject = document.createElement('option');
+        optionProject.value = projectArray;
+        optionProject.textContent = projectArray;
+        projectSelectField.appendChild(optionProject);
+    }
+}
+
 // Add a project to the todoProjects object
 function addProjectFromDialog(project) {
     const projectExists = project in todoProjects;
@@ -170,4 +182,4 @@ function deleteToDo() {
 }
 
 
-export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, addProjectFromDialog, deleteProjectFromDialog, progressToDo, todoProjects };
+export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, addProjectFromDialog, deleteProjectFromDialog, showProjectsInSelect, progressToDo, todoProjects };
