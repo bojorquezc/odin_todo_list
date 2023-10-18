@@ -1,24 +1,34 @@
 import { v4 as uuidv4 } from 'uuid';
-import { form, taskDialog, showTaskDialog, generalReset } from './todo_form_control';
-import { projectDialog } from './todo_form_control';
-import { displayManageProjects } from './todo_display';
+import {
+    form,
+    taskDialog,
+    showTaskDialog,
+    generalReset
+} from './todo_form_control';
+import {
+    projectDialog
+} from './todo_form_control';
+import {
+    displayManageProjects
+} from './todo_display';
 
 // Object to hold projects, each project is an array
-const todoProjects = {
+let todoProjects = {
     no_project: []
 };
 
-const todoProjectsDeserialized = JSON.parse(localStorage.getItem('todoProjectsSerialized'));
-
-
+// Manage local storage by interacting with main todoProjects object
 function saveLocalStorage() {
     const todoProjectsSerialized = JSON.stringify(todoProjects);
     localStorage.setItem('todoProjectsSerialized', todoProjectsSerialized);
 }
 
 function fetchLocalStorage() {
-    const todoProjectsDeserialized = JSON.parse(localStorage.getItem('todoProjectsSerialized'));
-    console.log(todoProjectsDeserialized);
+    if (localStorage.length >= 1) {
+        const todoProjectsDeserialized = JSON.parse(localStorage.getItem('todoProjectsSerialized'));
+        todoProjects = todoProjectsDeserialized;
+        generalReset();
+    }
 }
 
 // Factory function to create todo items
@@ -27,13 +37,10 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID,
     function createToDo() {
         const projectExists = project in todoProjects;
         if (projectExists === true) {
-            console.log(`Push to existing project: ${project}`)
             todoProjects[`${project}`].push(this);
         } else {
             todoProjects[`${project}`] = [];
-            console.log(`Create project array: ${project}`)
             todoProjects[`${project}`].push(this);
-            console.log(`Push to project: ${project}`)
         }
     }
 
@@ -53,9 +60,7 @@ function pushToDo() {
     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
     newTask.createToDo();
     generalReset();
-    console.table(todoProjects)
     saveLocalStorage();
-    fetchLocalStorage();
 }
 
 // Read the completed status and either mark the task as "complete" or "todo"
@@ -71,14 +76,13 @@ function progressToDo() {
                 this.textContent = 'complete';
                 this.classList.remove('progress_button');
                 this.classList.add('complete_progress_button');
-                console.table(todoProjects)
             } else if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId && array[i].completed === true) {
                 array[i].completed = false;
                 this.textContent = 'todo';
                 this.classList.add('progress_button');
                 this.classList.remove('complete_progress_button');
-                console.table(todoProjects)
             }
+            saveLocalStorage();
         }
     }
 }
@@ -104,9 +108,8 @@ function addProjectFromDialog(project) {
             alert('Enter a project name, project name can\'t be empty');
         } else {
             todoProjects[`${project}`] = [];
-            console.log(`Create project array: ${project}`)
-            console.table(todoProjects)
         }
+        saveLocalStorage();
 }
 
 // Delete a project from the todoProjects object
@@ -123,7 +126,7 @@ function deleteProjectFromDialog() {
     }
     generalReset();
     displayManageProjects();
-    console.table(todoProjects)
+    saveLocalStorage();
 }
 
 // Show task information when edit button is clicked in the todo task card
@@ -147,6 +150,12 @@ function editFilter() {
                 form.taskPriority.value = array[i].priority.toLowerCase();
                 form.taskProject.value = array[i].project;
 
+                console.log(todoProjects);
+                
+                console.log(`This is the array project ${array[i].project}`)
+                console.log(`This is the taskProject Value ${form.taskProject.value}`)
+
+                console.log(`This is the dataSetProject ${dataSetProject}`)
                 showTaskDialog();
             }
         }
@@ -173,8 +182,8 @@ function editToDo() {
                     pushToDo();
                 }
                 generalReset();
-                console.table(todoProjects)
             }
+            saveLocalStorage();
         }
     }
 }
@@ -190,11 +199,24 @@ function deleteToDo() {
             if (projectArray === dataSetProject && array[i].taskID === dataSetTaskId) {
                 array.splice(i, 1);
                 generalReset();
-                console.table(todoProjects)
             }
         }
+        saveLocalStorage();
     }
 }
 
 
-export { todoItem, pushToDo, deleteToDo, editToDo, editFilter, addProjectFromDialog, deleteProjectFromDialog, showProjectsInSelect, progressToDo, todoProjects };
+export {
+    todoItem,
+    pushToDo,
+    deleteToDo,
+    editToDo,
+    editFilter,
+    addProjectFromDialog,
+    deleteProjectFromDialog,
+    showProjectsInSelect,
+    saveLocalStorage,
+    fetchLocalStorage,
+    progressToDo,
+    todoProjects
+};
