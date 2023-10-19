@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP - Todo List</title>
+    <title>TOP - Terminal.ToDo</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/406a12ef4f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <h1>terminal.todo</h1>
+        <h1>Terminal.ToDo</h1>
         <p>todo list project created with vanilla javascript</p>
     </header>
     <div class="main_actions">
@@ -91,7 +91,23 @@
         <div class="project_list_container">
         </div>
     </dialog>
-    <div class="content"></div>
+    <div class="todo_instructions">
+        <div class="main_instructions">
+            <h2>Instructions</h2>
+            <ul>
+                <li>Start by adding a new task or new project.</li>
+                <li>If you don't create new projects, the default project "no_project" will be used.</li>
+                <li>This app stores your todos in your browser to review them at a later time.</li>
+            </ul>
+        </div>
+        <div class="sample_data_instructions">
+            <h2>Loading Sample Data</h2>
+            <p>If you are feeling a bit lazy and just want to see the app load a few tasks to test, press this button</p>
+            <button class="load_sample_data_button">Load Sample Data</button>
+        </div>
+    </div>
+    <div class="content">
+    </div>
 </body>
 
 </html>
