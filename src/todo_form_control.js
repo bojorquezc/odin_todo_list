@@ -1,14 +1,25 @@
-import { pushToDo, editToDo, addProjectFromDialog, showProjectsInSelect } from "./todo_manager";
-import { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus } from "./todo_display";
+import {
+    addProjectFromDialog,
+    editToDo,
+    pushToDo,
+    showProjectsInSelect
+} from "./todo_manager";
+import { 
+    displayManageProjects,
+    displayProgressStatus,
+    displayProjectButtons,
+    displayTodo,
+    refreshDisplay
+} from "./todo_display";
 
 // Object to control task form
 const form = {
     addTaskForm: document.querySelector('.add_task_form'),
-    taskNameField: document.querySelector('#taskName'),
     taskDescField: document.querySelector('#taskDesc'),
     taskDueDate: document.querySelector('#dueDate'),
+    taskNameField: document.querySelector('#taskName'),
     taskPriority: document.querySelector('#priority'),
-    taskProject: document.querySelector('#project'),
+    taskProject: document.querySelector('#project')
 }
 
 form.addTaskForm.addEventListener('submit', (e) => {
@@ -22,11 +33,11 @@ form.addTaskForm.addEventListener('submit', (e) => {
 
 // Object to control task dialog
 const taskDialog = {
-    dialog: document.querySelector('.tasks_dialog'),
-    title: document.querySelector('.task_dialog_title'),
     addNewTaskBtn: document.querySelector('.add_task_button'),
     closeBtn: document.querySelector('.close_task_dialog'),
-    submitBtn: document.querySelector('.submit_btn')
+    dialog: document.querySelector('.tasks_dialog'),
+    submitBtn: document.querySelector('.submit_btn'),
+    title: document.querySelector('.task_dialog_title')
 }
 
 function showTaskDialogNewTask() {
@@ -48,12 +59,12 @@ taskDialog.closeBtn.addEventListener('click', hideTaskDialog);
 
 // Object to control project dialog
 const projectDialog = {
-    dialog: document.querySelector('.projects_dialog'),
-    projectContainer: document.querySelector('.project_list_container'),
-    manageProjectsBtn: document.querySelector('.manage_project_button'),
     closeBtn: document.querySelector('.close_project_dialog'),
-    projectListContainer: document.querySelector('.project_list_container'),
+    dialog: document.querySelector('.projects_dialog'),
+    manageProjectsBtn: document.querySelector('.manage_project_button'),
+    projectContainer: document.querySelector('.project_list_container'),
     projectInput: document.getElementById('new_project_input'),
+    projectListContainer: document.querySelector('.project_list_container'),
     projectSubmitBtn: document.querySelector('.new_project_submit')
 }
 
@@ -95,4 +106,13 @@ function generalReset() {
     displayProgressStatus();
 }
 
-export { showTaskDialogNewTask, showTaskDialogEditTask, hideTaskDialog, pushToDo, generalReset, form, taskDialog, projectDialog }
+export { 
+    form,
+    generalReset,
+    hideTaskDialog,
+    projectDialog,
+    pushToDo,
+    showTaskDialogEditTask,
+    showTaskDialogNewTask,
+    taskDialog
+}

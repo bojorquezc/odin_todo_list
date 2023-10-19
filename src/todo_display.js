@@ -1,5 +1,14 @@
-import { todoProjects, progressToDo, editFilter, deleteToDo, deleteProjectFromDialog } from "./todo_manager";
-import { projectDialog, generalReset } from "./todo_form_control";
+import { 
+    deleteProjectFromDialog,
+    deleteToDo,
+    editFilter,
+    progressToDo,
+    todoProjects
+} from "./todo_manager";
+import { 
+    generalReset,
+    projectDialog
+} from "./todo_form_control";
 
 // Create a todo card per todo in the todoProjects object's arrays
 function displayTodo() {
@@ -214,4 +223,11 @@ function deleteButtonAddListener() {
     });
 }
 
-export { displayTodo, displayManageProjects, refreshDisplay, displayProjectButtons, displayProgressStatus, allTaskButtonAddListener };
+export { 
+    allTaskButtonAddListener,
+    displayManageProjects,
+    displayProgressStatus,
+    displayProjectButtons,
+    displayTodo,
+    refreshDisplay
+};

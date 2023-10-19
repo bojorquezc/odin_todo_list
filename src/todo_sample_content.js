@@ -1,5 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
-import { todoItem, todoProjects } from "./todo_manager";
+import {
+    todoItem,
+    todoProjects
+} from "./todo_manager";
+
+function loadSampleButton() {
+    const loadSampleBtn = document.querySelector('load_sample_data_button')
+    loadSampleBtn.addEventListener('click', loadSampleContent);
+}
+
 
 //sample todo tasks
 function loadSampleContent() {
@@ -18,4 +27,7 @@ function loadSampleContent() {
     console.table(todoProjects)
 }
 
-export { loadSampleContent };
+export { 
+    loadSampleButton,
+    loadSampleContent
+};

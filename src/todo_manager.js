@@ -1,10 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
     form,
-    taskDialog,
-    showTaskDialogNewTask,
+    generalReset,
     showTaskDialogEditTask,
-    generalReset
+    taskDialog
 } from './todo_form_control';
 import {
     projectDialog
@@ -50,13 +49,13 @@ const todoItem = (taskName, taskDescription, dueDate, priority, project, taskID,
 
 // Push to do from the task form into the todoProjects object
 function pushToDo() {
-    const taskName = form.taskNameField.value;
-    const taskDescription = form.taskDescField.value;
+    const completed = false;
     const dueDate = form.taskDueDate.value;
     const priority = form.taskPriority.value.toLowerCase();
-    const project = form.taskProject.value.toLowerCase();;
+    const project = form.taskProject.value.toLowerCase();
+    const taskDescription = form.taskDescField.value;
     const taskID = uuidv4();
-    const completed = false;
+    const taskName = form.taskNameField.value;
 
     const newTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
     newTask.createToDo();
@@ -207,16 +206,16 @@ function deleteToDo() {
 
 
 export {
-    todoItem,
-    pushToDo,
-    deleteToDo,
-    editToDo,
-    editFilter,
     addProjectFromDialog,
     deleteProjectFromDialog,
-    showProjectsInSelect,
-    saveLocalStorage,
+    deleteToDo,
+    editFilter,
+    editToDo,
     fetchLocalStorage,
     progressToDo,
+    pushToDo,
+    saveLocalStorage,
+    showProjectsInSelect,
+    todoItem,
     todoProjects
 };
