@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import {
     form,
     taskDialog,
-    showTaskDialog,
+    showTaskDialogNewTask,
+    showTaskDialogEditTask,
     generalReset
 } from './todo_form_control';
 import {
@@ -148,17 +149,16 @@ function editFilter() {
                 form.taskDescField.value = array[i].taskDescription;
                 form.taskDueDate.value = array[i].dueDate;
                 form.taskPriority.value = array[i].priority.toLowerCase();
+                showProjectsInSelect();
                 form.taskProject.value = array[i].project;
 
                 console.log(todoProjects);
-                
                 console.log(`This is the array project ${array[i].project}`)
                 console.log(`This is the taskProject Value ${form.taskProject.value}`)
-
                 console.log(`This is the dataSetProject ${dataSetProject}`)
-                showTaskDialog();
             }
         }
+        showTaskDialogEditTask();
     }
 }
 

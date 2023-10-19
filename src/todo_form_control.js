@@ -29,9 +29,13 @@ const taskDialog = {
     submitBtn: document.querySelector('.submit_btn')
 }
 
-function showTaskDialog() {
+function showTaskDialogNewTask() {
     taskDialog.dialog.style.display = 'block';
     showProjectsInSelect();
+}
+
+function showTaskDialogEditTask() {
+    taskDialog.dialog.style.display = 'block';
 }
 
 function hideTaskDialog() {
@@ -39,7 +43,7 @@ function hideTaskDialog() {
     resetTaskForm();
 }
 
-taskDialog.addNewTaskBtn.addEventListener('click', showTaskDialog);
+taskDialog.addNewTaskBtn.addEventListener('click', showTaskDialogNewTask);
 taskDialog.closeBtn.addEventListener('click', hideTaskDialog);
 
 // Object to control project dialog
@@ -91,4 +95,4 @@ function generalReset() {
     displayProgressStatus();
 }
 
-export { showTaskDialog, hideTaskDialog, pushToDo, generalReset, form, taskDialog, projectDialog }
+export { showTaskDialogNewTask, showTaskDialogEditTask, hideTaskDialog, pushToDo, generalReset, form, taskDialog, projectDialog }
