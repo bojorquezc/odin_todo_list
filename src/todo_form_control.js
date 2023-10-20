@@ -5,11 +5,12 @@ import {
     showProjectsInSelect
 } from "./todo_manager";
 import { 
+    allTaskButtonAddListener,
     displayManageProjects,
     displayProgressStatus,
     displayProjectButtons,
     displayTodo,
-    refreshDisplay
+    refreshDisplay,
 } from "./todo_display";
 
 // Object to control task form
@@ -104,6 +105,7 @@ function generalReset() {
     displayTodo();
     displayProjectButtons();
     displayProgressStatus();
+    allTaskButtonAddListener();
 }
 
 export { 

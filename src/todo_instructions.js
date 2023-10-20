@@ -1,14 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
     todoItem,
-    todoProjects
+    todoProjects,
+    fetchLocalStorage,
 } from "./todo_manager";
+import { 
+    generalReset 
+} from './todo_form_control';
+import { 
+    displayTodo 
+} from './todo_display';
 
 function loadSampleButton() {
-    const loadSampleBtn = document.querySelector('load_sample_data_button')
+    const loadSampleBtn = document.querySelector('.load_sample_data_button');
     loadSampleBtn.addEventListener('click', loadSampleContent);
 }
 
+const todoInsctructionsContainer = document.querySelector('.todo_instructions');
 
 //sample todo tasks
 function loadSampleContent() {
@@ -24,10 +32,24 @@ function loadSampleContent() {
     const jog = todoItem('Jog In The Park', 'Jog for 30 minutes in the park near the office', '2023-12-11T16:30', 'low', 'exercise', uuidv4(), false);
     jog.createToDo();
 
+    todoInsctructionsContainer.style.display = 'none';
+    generalReset();
     console.table(todoProjects)
 }
 
+function initializeProject() {
+    if (localStorage.length === 0) {
+        loadSampleButton();
+        generalReset();
+    } else {
+        todoInsctructionsContainer.style.display = 'none';
+        fetchLocalStorage();
+        generalReset();
+    }
+}
+
 export { 
+    initializeProject,
     loadSampleButton,
     loadSampleContent
 };

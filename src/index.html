@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP - Terminal.ToDo</title>
+    <title>Draculified ToDo</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/406a12ef4f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <h1>Terminal.ToDo</h1>
-        <p>todo list project created with vanilla javascript</p>
+        <h1>Draculified ToDo</h1>
+        <p>ToDo list project created with vanilla JavaScript. Theme used <a href='https://draculatheme.com/'>Dracula Theme</a></p>
     </header>
     <div class="main_actions">
         <button class="add_task_button">
@@ -24,7 +24,7 @@
     </div>
     <div class="project_buttons_section">
         <div class="project_buttons_title">
-            <p>project filter</p>
+            <p>Project Filter</p>
         </div>
         <div class="project_button_container">
             <div class="project_button_all">
@@ -97,12 +97,15 @@
             <ul>
                 <li>Start by adding a new task or new project.</li>
                 <li>If you don't create new projects, the default project "no_project" will be used.</li>
-                <li>This app stores your todos in your browser to review them at a later time.</li>
+                <li>This app stores your todos in your browser's local storage to review them at a later time.</li>
             </ul>
         </div>
         <div class="sample_data_instructions">
             <h2>Loading Sample Data</h2>
-            <p>If you are feeling a bit lazy and just want to see the app load a few tasks to test, press the following button:</p>
+            <p>If you are feeling a bit lazy and just want to see the app load a few tasks to test, press the <span class="green_text">Load Sample Data</span> button.
+                After loading sample data, if you add, delete, edit a task or project, the sample data will be saved to local storage.
+                If you want to delete tasks from your local storage, clear browser cache or press the "Clear All Data" button.
+            </p>
             <button class="load_sample_data_button">Load Sample Data</button>
         </div>
     </div>
