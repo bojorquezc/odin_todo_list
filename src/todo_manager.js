@@ -63,6 +63,14 @@ function pushToDo() {
     saveLocalStorage();
 }
 
+// Push to do from the task form into the todoProjects object
+function pushEditedToDo(taskName, taskDescription, dueDate, priority, project, taskID, completed) {
+    const editedTask = todoItem(taskName, taskDescription, dueDate, priority, project, taskID, completed);
+    editedTask.createToDo();
+    generalReset();
+    saveLocalStorage();
+}
+
 // Read the completed status and either mark the task as "complete" or "todo"
 function progressToDo() {
     for (const projectArray in todoProjects) {
@@ -150,11 +158,6 @@ function editFilter() {
                 form.taskPriority.value = array[i].priority.toLowerCase();
                 showProjectsInSelect();
                 form.taskProject.value = array[i].project;
-
-                console.log(todoProjects);
-                console.log(`This is the array project ${array[i].project}`)
-                console.log(`This is the taskProject Value ${form.taskProject.value}`)
-                console.log(`This is the dataSetProject ${dataSetProject}`)
             }
         }
         showTaskDialogEditTask();
@@ -177,8 +180,17 @@ function editToDo() {
                 if (form.taskProject.value === dataSetProject) {
                     array[i].project = form.taskProject.value.toLowerCase();
                 } else {
+                    //Remove from current project array, push to new project array with taskID and completed status intact
+                    const completedStatus = array[i].completed;
                     array.splice(i, 1);
-                    pushToDo();
+                    pushEditedToDo(
+                        form.taskNameField.value, 
+                        form.taskDescField.value,
+                        form.taskDueDate.value,
+                        form.taskPriority.value,
+                        form.taskProject.value.toLowerCase(),
+                        dataSetTaskId,
+                        completedStatus)
                 }
                 generalReset();
             }

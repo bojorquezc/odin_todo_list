@@ -53,7 +53,7 @@ footer, header, hgroup, menu, nav, section {
     --color9: #929292;
 }
 
-a:visited {
+a, a:visited {
     color: var(--color6);
 }
 
